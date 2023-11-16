@@ -26,13 +26,13 @@ def get_employee_todo_progress(employee_id):
             todos_data = response_todos.json()
 
             filename = f'{employee_id}.csv'
-            input = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
-                     "TASK_TITLE"]
+            '''input = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
+                     "TASK_TITLE"]'''
 
             with open(filename, 'w', newline='') as csv_f:
                 csv_writer = csv.writer(csv_f, delimiter=',',
                                         quoting=csv.QUOTE_ALL)
-                csv_writer.writerow(input)
+                '''csv_writer.writerow(input)'''
 
                 for task in todos_data:
                     csv_writer.writerow([employee_id, username,
