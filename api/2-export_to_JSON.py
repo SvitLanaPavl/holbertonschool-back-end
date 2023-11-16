@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''Module api documentation'''
-import csv
+import json
 import requests
 import sys
 
@@ -21,19 +21,26 @@ def get_employee_todo_progress(employee_id):
         url_todos = (f'https://jsonplaceholder.typicode.com/todos/'
                      f'?userId={employee_id}')
         response_todos = requests.get(url_todos)
+        tasks_done = []
 
         if response_todos.status_code == 200:
             todos_data = response_todos.json()
+            tasks_done = [todo for todo in todos_data if todo['completed']]
 
-            filename = f'{employee_id}.csv'
+            employee_tasks = {
+                employee_id: {
+                    'tasks': []
+                }
+            }
+            for task in tasks_done:
+                employee_tasks[employee_id]['tasks'].append({
+                    'task': task['title'],
+                    'completed': task['completed'],
+                    'username': username
+                })
+            with open(f'{employee_id}.json', 'w') as f:
+                json.dump(employee_tasks, f)
 
-            with open(filename, 'w', newline='') as csv_f:
-                csv_writer = csv.writer(csv_f, delimiter=',',
-                                        quoting=csv.QUOTE_ALL)
-
-                for task in todos_data:
-                    csv_writer.writerow([employee_id, username,
-                                        task['completed'], task['title']])
         else:
             print(f'Error: Failed to retrieve information for employee'
                   f' {employee_id}. Status code: {response_todos.status_code}')
