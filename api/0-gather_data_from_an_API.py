@@ -18,7 +18,7 @@ def get_employee_todo_progress(employee_id):
         employee_name = employee_data['name']
 
         url_todos = (f'https://jsonplaceholder.typicode.com/todos/'
-        f'?userId={employee_id}')
+                     f'?userId={employee_id}')
         response_todos = requests.get(url_todos)
         tasks_done = []
 
@@ -29,7 +29,7 @@ def get_employee_todo_progress(employee_id):
             num_total = len(todos_data)
 
             message = (f'Employee {employee_name} is done with tasks'
-            f' ({num_done}/{num_total})')
+                       f' ({num_done}/{num_total}):')
             print(message)
 
             for task in tasks_done:
