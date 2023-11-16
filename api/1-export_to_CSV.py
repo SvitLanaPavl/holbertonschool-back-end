@@ -17,6 +17,7 @@ def get_employee_todo_progress(employee_id):
     if response_users.status_code == 200:
         employee_data = response_users.json()
         employee_name = employee_data['name']
+        username = employee_data['username']
 
         url_todos = (f'https://jsonplaceholder.typicode.com/todos/'
                      f'?userId={employee_id}')
@@ -33,12 +34,12 @@ def get_employee_todo_progress(employee_id):
                      "TASK_TITLE"]
 
             with open(filename, 'w', newline='') as csv_f:
-                csv_writer = csv.writer(csv_f, delimiter=' ',
+                csv_writer = csv.writer(csv_f, delimiter=',',
                                         quoting=csv.QUOTE_ALL)
                 csv_writer.writerow(input)
 
                 for task in todos_data:
-                    csv_writer.writerow([employee_id, employee_name,
+                    csv_writer.writerow([employee_id, username,
                                         task['completed'], task['title']])
         else:
             print(f'Error: Failed to retrieve information for employee'
