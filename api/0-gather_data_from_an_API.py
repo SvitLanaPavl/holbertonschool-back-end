@@ -29,7 +29,7 @@ def get_employee_todo_progress(employee_id):
             num_total = len(todos_data)
 
             message = (f'Employee {employee_name} is done with tasks'
-                       f' ({num_done}/{num_total}):')
+                       f'({num_done}/{num_total}):')
             print(message)
 
             for task in tasks_done:
