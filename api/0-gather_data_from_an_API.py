@@ -10,7 +10,7 @@ def get_employee_todo_progress(employee_id):
     if not isinstance(employee_id, int) or employee_id <= 0:
         raise ValueError('Employee id should be a positive integer')
 
-    url = f'https://jsonplaceholder.typicode.com/todos/{employee_id}'
+    url = f'https://jsonplaceholder.typicode.com/user/{employee_id}'
     api_url_response = requests.get(url)
 
     if api_url_response.status_code == 200:
@@ -19,7 +19,7 @@ def get_employee_todo_progress(employee_id):
         tasks_done = [todo for todo in data['todos'] if todo['completed']]
         num_done = len(tasks_done)
         num_total = len(data['todos'])
-        employee_name = data['employee_name']
+        employee_name = data['name']
 
         message = f'Employee {employee_name} is done with tasks\
             ({num_done}/{num_total})'
@@ -43,4 +43,3 @@ if __name__ == '__main__':
     except Exception as e:
         print(f'Unexpected error: {e}')
         exit(1)
-
