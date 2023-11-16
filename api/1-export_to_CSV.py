@@ -16,18 +16,14 @@ def get_employee_todo_progress(employee_id):
 
     if response_users.status_code == 200:
         employee_data = response_users.json()
-        employee_name = employee_data['name']
         username = employee_data['username']
 
         url_todos = (f'https://jsonplaceholder.typicode.com/todos/'
                      f'?userId={employee_id}')
         response_todos = requests.get(url_todos)
-        tasks_done = []
 
         if response_todos.status_code == 200:
             todos_data = response_todos.json()
-
-            tasks_done = [todo for todo in todos_data if todo['completed']]
 
             filename = f'{employee_id}.csv'
             input = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
