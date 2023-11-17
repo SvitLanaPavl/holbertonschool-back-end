@@ -42,11 +42,5 @@ def get_employee_todo_progress():
 
 
 if __name__ == '__main__':
-    try:
-        get_employee_todo_progress()
-    except ValueError as e:
-        print(e)
-        exit(1)
-    except Exception as e:
-        print(f'Unexpected error: {e}')
-        exit(1)
+    get_employee_todo_progress()
+
