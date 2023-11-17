@@ -28,12 +28,10 @@ def get_employee_todo_progress(employee_id):
             tasks_done = [todo for todo in todos_data if todo['completed']]
 
             employee_tasks = {
-                employee_id: {
-                    'tasks': []
-                }
+                employee_id: []
             }
             for task in tasks_done:
-                employee_tasks[employee_id]['tasks'].append({
+                employee_tasks[employee_id].append({
                     'task': task['title'],
                     'completed': task['completed'],
                     'username': username
