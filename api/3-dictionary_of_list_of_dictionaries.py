@@ -4,7 +4,7 @@ import json
 import requests
 
 
-def get_employee_todo_progress():
+if __name__ == '__main__':
     '''Getting the employee todo progress'''
 
     all_employees_data = {}
@@ -34,13 +34,8 @@ def get_employee_todo_progress():
                     json.dump(all_employees_data, jf)
             else:
                 print(f'Error: Failed to retrieve information for employee'
-                      f' {employee_id}. Status code:
+                      f' {employee_id}. Status code:\
                       {response_todos.status_code}')
         else:
             print(f'Error: Failed to retrieve information for employee ID'
                   f' {employee_id}. Status code: {response_users.status_code}')
-
-
-if __name__ == '__main__':
-    get_employee_todo_progress()
-
