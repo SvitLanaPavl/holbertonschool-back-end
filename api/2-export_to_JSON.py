@@ -30,7 +30,7 @@ def get_employee_todo_progress(employee_id):
             employee_tasks = {
                 employee_id: []
             }
-            for task in tasks_done:
+            for task in todos_data:
                 employee_tasks[employee_id].append({
                     'task': task['title'],
                     'completed': task['completed'],
