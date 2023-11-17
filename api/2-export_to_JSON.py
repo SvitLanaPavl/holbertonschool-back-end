@@ -21,11 +21,9 @@ def get_employee_todo_progress(employee_id):
         url_todos = (f'https://jsonplaceholder.typicode.com/todos/'
                      f'?userId={employee_id}')
         response_todos = requests.get(url_todos)
-        tasks_done = []
 
         if response_todos.status_code == 200:
             todos_data = response_todos.json()
-            tasks_done = [todo for todo in todos_data if todo['completed']]
 
             employee_tasks = {
                 employee_id: []
